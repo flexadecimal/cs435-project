@@ -1,30 +1,33 @@
 insertRec: insert a new value into the tree.
-- edge cases: null value. don't insert these
+- edge cases: inserting into empty tree - set root
 - i/o: tree but with value added. doesn't return a value
 - algo:
-  start at root, make new node with val
+  make new node with val
   if root is null, set root to new node
   else if val < left subtree val, recurse with left subtree, otherwise recurse right
 - problems: none i can tell
 
 deleteRec: delete a value in the tree
 - edge cases: empty tree, but need to handle this
-- i/o: tree, but with value removed. returns root
+- i/o: tree, but with value removed.
 - algo:
   if root is none return root
   if val < root val, recurse left, else recurse right
   else val is root val, must delete root
+    deleting single root node case: set root to none
+    0/1 child case
     if root has no left child
-      temp = root.right, delete root, return temp
-    if root has no right child
-      temp = root.left, delete root, return temp
+      return right
+    if root has no right childb
+      return left
     else (2 children)
       root.val = find_prev(root.right)
+      set root val to temp val
       root.right = deleteRec(root.right, root.val)
   return root
 - problems: need to return new root to handle 2 child case, where you get prev node
 
-findNextRec: find the inorder successor of val given root of tree
+findNextRec: find the inorder successor node
 - edge cases: empty tree, need to handle this
 - i/o: input tree and val, returns single val (inorder successor)
 - algo:
@@ -35,7 +38,7 @@ findNextRec: find the inorder successor of val given root of tree
   else recurse with right subtree
 - problems: none that i can tell
 
-findPrevRec: find the inorder predecessor of val given root of tree
+findPrevRec: find the inorder predecessor node
 - edge cases: empty tree
 - i/o: input tree and val, return single val (predecessor)
 - algo:
@@ -48,16 +51,16 @@ findPrevRec: find the inorder predecessor of val given root of tree
 
 findMinRec: find the min val in the tree (leftmost child)
 - edge cases: empty tree
-- i/o: root of input tree, returns single val (min)
+- i/o: root of input tree, returns min node
 - algo:
-  if root.left is None return root val
+  if root.left is None return root
   else recurse left
 - problems: none I can tell
 
 findMaxRec: find the max val in the tree (rightmost child)
 - edge cases: empty tree
-- i/o: root of input tree, returns single val (max)
+- i/o: root of input tree, returns max node
 - algo:
-  if root.right is None return root val
+  if root.right is None return root
   else recurse right
 - problems: none I can tell
